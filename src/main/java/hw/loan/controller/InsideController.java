@@ -24,6 +24,6 @@ public class InsideController {
             System.out.println("");
             //lista az összes juzerrel
         }
-        return "inside";
+        return "inside"; 
     }
 }

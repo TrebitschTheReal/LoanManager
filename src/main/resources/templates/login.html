@@ -28,6 +28,18 @@
         </div>
     </div>
 
+    <div>
+
+        <ul th:each="actualUser : ${userList}">
+            <li>######################</li>
+            <li th:text="${actualUser.id}"></li>
+            <li th:text="${actualUser.email}"></li>
+            <li th:text="${actualUser.password}"></li>
+        </ul>
+
+
+    </div>
+
 </div>
 
 <script th:src="@{webjars/jquery/1.9.1/jquery.js}"></script>

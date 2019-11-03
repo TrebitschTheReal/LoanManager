@@ -41,28 +41,21 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/inside").permitAll()
+                .antMatchers("/inside/**").authenticated()
                 .antMatchers("/inside/admin").hasAnyAuthority("admin")
                 .antMatchers("/inside/manager").hasAnyAuthority("admin", "manager")
                 .antMatchers("/inside/user").hasAnyAuthority("admin", "manager", "user-common")
 
                 .and()
 
-                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login")
+                .formLogin()
+                .loginPage("/login").permitAll()
 
                 .and()
 
-                .httpBasic();
-    }
+                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login");
 
-//    @Bean
-//    DaoAuthenticationProvider authenticationProvider(){
-//        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
-//        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
-//        //daoAuthenticationProvider.setUserDetailsService(this.userPrincipalDetailsService);
-//
-//        return daoAuthenticationProvider;
-//    }
+    }
 
     @Bean
     PasswordEncoder passwordEncoder() {

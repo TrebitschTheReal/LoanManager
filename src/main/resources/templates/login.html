@@ -18,26 +18,20 @@
 
     <div class="login--box card jumbotron mx-auto mt-3">
         <div class="login-box container mx-auto text-center">
-            <form action="login" class="text-center" method="post">
+            <form th:action="@{/login}" class="text-center" method="post">
                 <div class="form-group">
-                    <input name="email" type="text" placeholder="E-mail" class="mb-1 form-control input-sm">
-                    <input name="password" type="password" placeholder="Password" class="mb-3 form-control">
+                    <input id="email" name="email" type="text" placeholder="E-mail" class="mb-1 form-control input-sm">
+                    <input id="password" name="password" type="password" placeholder="Password" class="mb-3 form-control">
                     <input type="submit" value="Sign in" class="btn btn-dark px-5">
                 </div>
             </form>
+            <div th:if="${param.error}" class="alert alert-danger">
+                Invalid username or password. Or something went wrong. Whatever
+            </div>
+            <div th:if="${param.logout}" class="alert alert-success">
+                You have been logged out.
+            </div>
         </div>
-    </div>
-
-    <div>
-
-        <ul th:each="actualUser : ${userList}">
-            <li>######################</li>
-            <li th:text="${actualUser.id}"></li>
-            <li th:text="${actualUser.email}"></li>
-            <li th:text="${actualUser.password}"></li>
-        </ul>
-
-
     </div>
 
 </div>

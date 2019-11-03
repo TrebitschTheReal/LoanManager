@@ -1,19 +1,19 @@
 //package hw.loan.controller;
 //
+//
 //import org.springframework.stereotype.Controller;
 //import org.springframework.web.bind.annotation.GetMapping;
 //import org.springframework.web.bind.annotation.RequestMapping;
 //
 //@Controller
-//@RequestMapping(value = "/")
+//@RequestMapping("/")
 //public class HomeController {
-//    @GetMapping("index")
-//    public String index() {
-//        return "index";
+//
+//    @GetMapping("inside")
+//    public String index(){
+//        return "inside";
 //    }
 //
 //    @GetMapping("login")
-//    public String login() {
-//        return "login";
-//    }
+//    public String login(){return "login";}
 //}

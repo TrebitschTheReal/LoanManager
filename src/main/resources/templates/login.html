@@ -17,13 +17,17 @@
     </div>
 
     <div class="login--box card jumbotron mx-auto mt-3">
-        <div class="login-box container mx-auto text-center">
+        <div class="container mx-auto text-center">
             <form th:action="@{/login}" class="text-center" method="post">
-                <div class="form-group">
-                    <input id="email" name="email" type="text" placeholder="E-mail" class="mb-1 form-control input-sm">
-                    <input id="password" name="password" type="password" placeholder="Password" class="mb-3 form-control">
-                    <input type="submit" value="Sign in" class="btn btn-dark px-5">
-                </div>
+                <fieldset>
+                    <div class="form-group">
+                        <input id="email" name="email" type="text" placeholder="E-mail"
+                               class="mb-1 form-control input-sm">
+                        <input id="password" name="password" type="password" placeholder="Password"
+                               class="mb-3 form-control">
+                        <input type="submit" value="Sign in" class="btn btn-dark px-5">
+                    </div>
+                </fieldset>
             </form>
             <div th:if="${param.error}" class="alert alert-danger">
                 Invalid username or password. Or something went wrong. Whatever
@@ -33,7 +37,6 @@
             </div>
         </div>
     </div>
-
 </div>
 
 <script th:src="@{webjars/jquery/1.9.1/jquery.js}"></script>

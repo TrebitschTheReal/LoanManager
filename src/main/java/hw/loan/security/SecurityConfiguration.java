@@ -1,6 +1,5 @@
 package hw.loan.security;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -12,19 +11,18 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import javax.sql.DataSource;
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+    private UserPrincipalDetailsService userPrincipalDetailsService;
 
-    @Autowired
-    private DataSource dataSource;
+    public SecurityConfiguration(UserPrincipalDetailsService userPrincipalDetailsService) {
+        this.userPrincipalDetailsService = userPrincipalDetailsService;
+    }
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-                .jdbcAuthentication().dataSource(dataSource);
+    protected void configure(AuthenticationManagerBuilder auth) {
+        auth.authenticationProvider(authenticationProvider());
     }
 
     @Override
@@ -32,19 +30,27 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/inside").authenticated()
-                .antMatchers("/inside/admin").hasAnyAuthority("admin")
-                .antMatchers("/inside/manager").hasAnyAuthority("admin", "manager")
-                .antMatchers("/inside/user").hasAnyAuthority("admin", "manager", "user")
+                .antMatchers("/inside/admin").hasAnyAuthority("ADMIN")
+                .antMatchers("/inside/manager").hasAnyAuthority("ADMIN", "MANAGER")
+                .antMatchers("/inside/user").hasAnyAuthority("ADMIN", "MANAGER", "USER")
 
                 .and()
 
-//                .formLogin()
-//                .loginPage("/login").permitAll()
-                .httpBasic()
+                .formLogin()
+                .loginPage("/login").permitAll()
+
                 .and()
 
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login");
+    }
 
+    @Bean
+    DaoAuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
+        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
+        daoAuthenticationProvider.setUserDetailsService(this.userPrincipalDetailsService);
+
+        return daoAuthenticationProvider;
     }
 
     @Bean

@@ -33,7 +33,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
                 .withUser("user")
                 .password(passwordEncoder().encode("user"))
-                .authorities("user");
+                .authorities("user-common");
 
     }
 
@@ -42,13 +42,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/inside").permitAll()
-                .antMatchers("/inside/admin").hasAnyAuthority("master")
-                .antMatchers("/inside/manager").hasAnyAuthority("master", "manager-common")
-                .antMatchers("/inside/user").hasAnyAuthority("master", "manager-common", "user-common")
+                .antMatchers("/inside/admin").hasAnyAuthority("admin")
+                .antMatchers("/inside/manager").hasAnyAuthority("admin", "manager")
+                .antMatchers("/inside/user").hasAnyAuthority("admin", "manager", "user-common")
 
                 .and()
 
-                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/")
+                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login")
 
                 .and()
 

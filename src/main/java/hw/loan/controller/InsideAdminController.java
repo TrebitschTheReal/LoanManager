@@ -9,6 +9,6 @@ public class InsideAdminController {
 
     @RequestMapping(value= {"inside/admin",}, method = RequestMethod.GET)
     public String view() {
-        return "main-inside-admin";
+        return "admin";
     }
 }

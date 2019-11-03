@@ -1,5 +1,6 @@
 package hw.loan.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -11,46 +12,35 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import javax.sql.DataSource;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private DataSource dataSource;
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
-                .inMemoryAuthentication()
-
-                .withUser("admin")
-                .password(passwordEncoder().encode("admin"))
-                .authorities("admin")
-
-                .and()
-
-                .withUser("manager")
-                .password(passwordEncoder().encode("manager"))
-                .authorities("manager", "upload", "search", "whatever")
-
-                .and()
-
-                .withUser("user")
-                .password(passwordEncoder().encode("user"))
-                .authorities("user-common");
-
+                .jdbcAuthentication().dataSource(dataSource);
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/inside/**").authenticated()
+                .antMatchers("/inside").authenticated()
                 .antMatchers("/inside/admin").hasAnyAuthority("admin")
                 .antMatchers("/inside/manager").hasAnyAuthority("admin", "manager")
-                .antMatchers("/inside/user").hasAnyAuthority("admin", "manager", "user-common")
+                .antMatchers("/inside/user").hasAnyAuthority("admin", "manager", "user")
 
                 .and()
 
-                .formLogin()
-                .loginPage("/login").permitAll()
-
+//                .formLogin()
+//                .loginPage("/login").permitAll()
+                .httpBasic()
                 .and()
 
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login");

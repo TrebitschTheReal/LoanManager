@@ -11,33 +11,30 @@
 </head>
 <body>
 <div class="inner-body">
-
-    <div class="my-4">
-        <p class="text-white text-center display-2">Please sign in:</p>
-    </div>
-
     <div class="login--box card jumbotron mx-auto mt-3">
         <article class="card-body">
             <form th:action="@{/login}" class="text-center" method="post">
                 <fieldset>
                     <div class="card-body">
                         <div class="form-group">
-                            <input type="text" class="form-control" id="username" name="username" placeholder="Username">
+                            <input type="text" class="form-control" id="username" name="username"
+                                   placeholder="Username">
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                            <input type="password" class="form-control" id="password" name="password"
+                                   placeholder="Password">
                         </div>
                         <input type="submit" value="Sign in" class="btn btn-dark px-5">
                     </div>
                 </fieldset>
             </form>
-            <div th:if="${param.error}" class="alert alert-danger">
-                Invalid username or password. Or something went wrong. Whatever
-            </div>
-            <div th:if="${param.logout}" class="alert alert-success">
-                You have been logged out.
-            </div>
         </article>
+    </div>
+    <div th:if="${param.error}" id="error" class="alert alert-danger login--box text-center mx-auto mt-2">
+        Invalid username or password. Or something went wrong. Whatever
+    </div>
+    <div th:if="${param.logout}" class="alert alert-success">
+        You have been logged out.
     </div>
 </div>
 
@@ -46,6 +43,3 @@
 <script th:src="@{webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
 </body>
 </html>
-
-
-<!--a security form működik ez nem. rejtély-->

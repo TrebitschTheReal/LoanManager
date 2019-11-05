@@ -23,7 +23,7 @@ public class DbInit implements CommandLineRunner {
         this.userRepository.deleteAll();
 
         // Crete users
-        User user = new User("user",passwordEncoder.encode("user123"),"USER","");
+        User user = new User("user",passwordEncoder.encode("user123"),"","ROLE_USER");
         User admin = new User("admin",passwordEncoder.encode("admin123"),"ADMIN","ADMIN");
         User manager = new User("manager",passwordEncoder.encode("manager123"),"MANAGER","MANAGER");
 

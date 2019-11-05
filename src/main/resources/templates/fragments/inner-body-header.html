@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" th:href="@{webjars/bootstrap/4.3.1/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/global.css}" type="text/css">
+    <title>Rent a Bike</title>
+</head>
+<body>
+<!--###################################################################-->
+<!--###################################################################-->
+<!--###################################################################-->
+
+<header th:fragment="header" class="main--navbar">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-3">
+        <div class="container">
+            <a class="navbar-brand" th:href="@{/}">Rent a bike</a>
+            <ul class="navbar-nav">
+
+                <li sec:authorize="hasAuthority('ADMIN')" class="nav-item">
+                    <a class="nav-link mx-2" href="listcar">Manage users</a>
+                </li>
+                <li sec:authorize="hasAnyAuthority('ADMIN', 'MANAGER')" class="nav-item">
+                    <a class="nav-link" href="carupload">Manage bikes</a>
+                </li>
+                <li sec:authorize="hasAnyAuthority('ADMIN', 'MANAGER', 'ROLE_USER')" class="nav-item">
+                    <a class="nav-link mx-2" href="listcar">Check bikes for rent</a>
+                </li>
+
+            </ul>
+            <form th:action="@{/logout}" form-method="post">
+                <button sec:authorize="isAuthenticated()" type="submit" class="btn btn-danger">Logout</button>
+                <button sec:authorize="isAnonymous()" th:href="@{~/login}" type="submit" class="btn btn-success">Login</button>
+            </form>
+        </div>
+    </nav>
+</header>
+
+<!--###################################################################-->
+<!--###################################################################-->
+<!--###################################################################-->
+<script th:src="@{webjars/jquery/1.9.1/jquery.js}"></script>
+<script th:src="@{webjars/popper.js/1.14.7/popper.js}"></script>
+<script th:src="@{webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
+</body>
+</html>

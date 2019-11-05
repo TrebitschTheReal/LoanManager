@@ -13,31 +13,6 @@
 <!--###################################################################-->
 <!--###################################################################-->
 <!--###################################################################-->
-<header th:fragment="header" class="main--navbar">
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-3">
-        <div class="container">
-            <a class="navbar-brand" th:href="@{/}">Rent a bike</a>
-            <ul class="navbar-nav">
-
-                <li sec:authorize="hasAuthority('ADMIN')" class="nav-item">
-                    <a class="nav-link mx-2" href="listcar">Manage users</a>
-                </li>
-                <li sec:authorize="hasAnyAuthority('ADMIN', 'MANAGER')" class="nav-item">
-                    <a class="nav-link" href="carupload">Manage bikes</a>
-                </li>
-                <li sec:authorize="hasAnyAuthority('ADMIN', 'MANAGER', 'USER')" class="nav-item">
-                    <a class="nav-link mx-2" href="listcar">Check bikes for rent</a>
-                </li>
-
-            </ul>
-            <form th:action="@{/logout}" form-method="post">
-                <button sec:authorize="isAuthenticated()" type="submit" class="btn btn-danger">Logout</button>
-                <button sec:authorize="isAnonymous()" th:href="@{~/login}" type="submit" class="btn btn-success">Login</button>
-            </form>
-        </div>
-    </nav>
-</header>
-<!--###################################################################-->
 
 <div th:fragment="login" class="login--box card jumbotron mx-auto mt-3">
     <article class="card-body">
@@ -67,27 +42,7 @@
 
 <!--###################################################################-->
 
-<div th:fragment="content">
-    <div th:if="${#httpServletRequest.requestURI == '/login'}">
-        <div th:replace="fragments/inner-body-components :: login"></div>
-    </div>
-    <div th:if="${#httpServletRequest.requestURI == '/'}">
-        <div sec:authorize="isAnonymous()" class="mx-auto p-2">
-            <p class="display-3 text-center text-white">Welcome to our bike rental service!</p>
-            <br>
-            <p class="h-3 text-center text-white">Please log in and use the navigation according to your needs.</p>
-        </div>
-        <div sec:authorize="hasAuthority('ADMIN')" class="mx-auto p-2">
-            <p class="display-3 text-center text-white">Hello admin!</p>
-        </div>
-        <div sec:authorize="hasAuthority('MANAGER')" class="mx-auto p-2">
-            <p class="display-3 text-center text-white">Hello manager!</p>
-        </div>
-        <div sec:authorize="hasAuthority('USER')" class="mx-auto p-2">
-            <p class="display-3 text-center text-white">Hello customer!</p>
-        </div>
-    </div>
-</div>
+<!--TODO: manage bike, etc pages implementation-->
 
 <!--###################################################################-->
 <!--###################################################################-->

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" th:href="@{webjars/bootstrap/4.3.1/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/global.css}" type="text/css">
+    <title>Rent a Bike</title>
+</head>
+<body>
+<!--###################################################################-->
+<!--###################################################################-->
+<!--###################################################################-->
+<header th:fragment="header" class="main--navbar">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-3">
+        <div class="container">
+            <a class="navbar-brand" th:href="@{/}">Rent a bike</a>
+            <ul class="navbar-nav">
+
+                <li sec:authorize="hasAuthority('ADMIN')" class="nav-item">
+                    <a class="nav-link mx-2" href="listcar">Manage users</a>
+                </li>
+                <li sec:authorize="hasAnyAuthority('ADMIN', 'MANAGER')" class="nav-item">
+                    <a class="nav-link" href="carupload">Manage bikes</a>
+                </li>
+                <li sec:authorize="hasAnyAuthority('ADMIN', 'MANAGER', 'USER')" class="nav-item">
+                    <a class="nav-link mx-2" href="listcar">Check bikes for rent</a>
+                </li>
+
+            </ul>
+            <form th:action="@{/logout}" form-method="post">
+                <button sec:authorize="isAuthenticated()" type="submit" class="btn btn-danger">Logout</button>
+                <button sec:authorize="isAnonymous()" th:href="@{~/login}" type="submit" class="btn btn-success">Login</button>
+            </form>
+        </div>
+    </nav>
+</header>
+<!--###################################################################-->
+
+<div th:fragment="login" class="login--box card jumbotron mx-auto mt-3">
+    <article class="card-body">
+        <form th:action="@{/login}" class="text-center" method="post">
+            <fieldset>
+                <div class="card-body">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="username" name="username"
+                               placeholder="Username">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="password" name="password"
+                               placeholder="Password">
+                    </div>
+                    <input type="submit" value="Sign in" class="btn btn-dark px-5">
+                </div>
+            </fieldset>
+        </form>
+    </article>
+</div>
+<div th:if="${param.error}" id="error" class="alert alert-danger login--box text-center mx-auto mt-2">
+    Invalid username or password. Or something went wrong. Whatever
+</div>
+<div th:if="${param.logout}" class="alert alert-success">
+    You have been logged out.
+</div>
+
+<!--###################################################################-->
+
+<div th:fragment="content">
+    <div th:if="${#httpServletRequest.requestURI == '/login'}">
+        <div th:replace="fragments/inner-body-components :: login"></div>
+    </div>
+    <div th:if="${#httpServletRequest.requestURI == '/'}">
+        <div sec:authorize="isAnonymous()" class="mx-auto p-2">
+            <p class="display-3 text-center text-white">Welcome to our bike rental service!</p>
+            <br>
+            <p class="h-3 text-center text-white">Please log in and use the navigation according to your needs.</p>
+        </div>
+        <div sec:authorize="hasAuthority('ADMIN')" class="mx-auto p-2">
+            <p class="display-3 text-center text-white">Hello admin!</p>
+        </div>
+        <div sec:authorize="hasAuthority('MANAGER')" class="mx-auto p-2">
+            <p class="display-3 text-center text-white">Hello manager!</p>
+        </div>
+        <div sec:authorize="hasAuthority('USER')" class="mx-auto p-2">
+            <p class="display-3 text-center text-white">Hello customer!</p>
+        </div>
+    </div>
+</div>
+
+<!--###################################################################-->
+<!--###################################################################-->
+<!--###################################################################-->
+<script th:src="@{webjars/jquery/1.9.1/jquery.js}"></script>
+<script th:src="@{webjars/popper.js/1.14.7/popper.js}"></script>
+<script th:src="@{webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
+</body>
+</html>

@@ -4,6 +4,7 @@
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.stereotype.Controller;
 //import org.springframework.ui.Model;
+//import org.springframework.web.bind.annotation.RequestHeader;
 //import org.springframework.web.bind.annotation.RequestMapping;
 //import org.springframework.web.bind.annotation.RequestMethod;
 //
@@ -12,13 +13,14 @@
 //@Controller
 //public class LoginController {
 //
-//    @RequestMapping(value= {"login", "/"}, method = RequestMethod.GET)
-//    public String view(Model model) {
+//    @RequestMapping(value = "signup")
+//    public String signup(Model model, @RequestHeader("X-Requested-With") String requestedWith) {
 //
-////        List<User> userList = us.getAllUsers();
-////
-////        model.addAttribute("userList", userList);
+//        model.addAttribute(new SignupForm());
+//        if (AjaxUtils.isAjaxRequest(requestedWith)) {
+//            return SIGNUP_VIEW_NAME.concat(" :: signupForm");
+//        }
+//        return SIGNUP_VIEW_NAME;
 //
-//        return "login";
 //    }
 //}

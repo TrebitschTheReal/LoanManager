@@ -13,32 +13,54 @@
 <!--###################################################################-->
 <!--###################################################################-->
 <!--###################################################################-->
+<div th:fragment="login">
+    <div class="login--box card jumbotron mx-auto mt-3">
+        <article class="card-body">
+            <form th:action="@{/login}" class="text-center" method="post">
+                <fieldset>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="username" name="username"
+                                   placeholder="Username">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" id="password" name="password"
+                                   placeholder="Password">
+                        </div>
+                        <input type="submit" value="Sign in" class="btn btn-dark px-5">
+                    </div>
+                </fieldset>
+            </form>
+        </article>
+    </div>
+    <div th:if="${param.error}" id="error" class="alert alert-danger login--box text-center mx-auto mt-2">
+        Invalid username or password. Or something went wrong. Whatever
+    </div>
+    <div th:if="${param.logout}" class="alert alert-success">
+        You have been logged out.
+    </div>
+    <div class="m-5 text-center text-white">
+        <div class="border border-success mb-2 row">
+            <div class="col">
+                <p class="">username: admin</p>
+                <p class="">password: admin123</p>
+            </div>
+        </div>
+        <div class="border border-success mb-2 row">
+            <div class="col">
+                <p class="">username: manager</p>
+                <p class="">password: manager123</p>
+            </div>
+        </div>
+        <div class="border border-success mb-2 row">
+            <div class="col">
+                <p class="">username: user</p>
+                <p class="">password: user123</p>
+            </div>
+        </div>
+    </div>
+</div>
 
-<div th:fragment="login" class="login--box card jumbotron mx-auto mt-3">
-    <article class="card-body">
-        <form th:action="@{/login}" class="text-center" method="post">
-            <fieldset>
-                <div class="card-body">
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="username" name="username"
-                               placeholder="Username">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" id="password" name="password"
-                               placeholder="Password">
-                    </div>
-                    <input type="submit" value="Sign in" class="btn btn-dark px-5">
-                </div>
-            </fieldset>
-        </form>
-    </article>
-</div>
-<div th:if="${param.error}" id="error" class="alert alert-danger login--box text-center mx-auto mt-2">
-    Invalid username or password. Or something went wrong. Whatever
-</div>
-<div th:if="${param.logout}" class="alert alert-success">
-    You have been logged out.
-</div>
 
 <!--###################################################################-->
 

@@ -21,13 +21,13 @@
             <ul class="navbar-nav">
 
                 <li sec:authorize="hasAuthority('ADMIN')" class="nav-item">
-                    <a class="nav-link mx-2" href="listcar">Manage users</a>
+                    <a class="nav-link mx-2" th:href="@{~/manageusers}">Manage users</a>
                 </li>
                 <li sec:authorize="hasAnyAuthority('ADMIN', 'MANAGER')" class="nav-item">
-                    <a class="nav-link" href="carupload">Manage bikes</a>
+                    <a class="nav-link" th:href="@{~/managebikes}">Manage bikes</a>
                 </li>
                 <li sec:authorize="hasAnyAuthority('ADMIN', 'MANAGER', 'ROLE_USER')" class="nav-item">
-                    <a class="nav-link mx-2" href="listcar">Check bikes for rent</a>
+                    <a class="nav-link mx-2" th:href="@{~/rentbike}">Check bikes for rent</a>
                 </li>
 
             </ul>

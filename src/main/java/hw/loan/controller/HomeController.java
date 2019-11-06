@@ -8,12 +8,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/")
 public class HomeController {
+    private String mainPage = "index";
 
     @GetMapping("index")
     public String index(){
-        return "index";
+        return mainPage;
     }
 
     @GetMapping("login")
-    public String login(){return "index";}
+    public String login(){return mainPage;}
+
+    @GetMapping("managebikes")
+    public String managebikes(){return mainPage;}
+
+    @GetMapping("manageusers")
+    public String manageusers(){return mainPage;}
+
+    @GetMapping("rentbike")
+    public String rentbike(){return mainPage;}
+
+    @GetMapping("403")
+    public String accesdenied(){return mainPage;}
 }

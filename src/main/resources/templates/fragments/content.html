@@ -15,11 +15,20 @@
 <!--###################################################################-->
 
 <div th:fragment="content">
+    <div th:if="${#httpServletRequest.requestURI == '/'}">
+        <div th:replace="fragments/content-pages :: welcome"></div>
+    </div>
     <div th:if="${#httpServletRequest.requestURI == '/login'}">
         <div th:replace="fragments/content-pages :: login"></div>
     </div>
-    <div th:if="${#httpServletRequest.requestURI == '/'}">
-        <div th:replace="fragments/content-pages :: welcome"></div>
+    <div th:if="${#httpServletRequest.requestURI == '/rentbike'}">
+        <div th:replace="fragments/content-pages :: rentbike"></div>
+    </div>
+    <div th:if="${#httpServletRequest.requestURI == '/managebikes'}">
+        <div th:replace="fragments/content-pages :: managebikes"></div>
+    </div>
+    <div th:if="${#httpServletRequest.requestURI == '/403'}">
+        <div th:replace="fragments/content-pages :: accesdenied"></div>
     </div>
 </div>
 

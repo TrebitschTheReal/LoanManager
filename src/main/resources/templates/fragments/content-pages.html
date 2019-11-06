@@ -13,6 +13,7 @@
 <!--###################################################################-->
 <!--###################################################################-->
 <!--###################################################################-->
+
 <div th:fragment="login">
     <div class="login--box card jumbotron mx-auto mt-3">
         <article class="card-body">
@@ -61,7 +62,23 @@
     </div>
 </div>
 
-
+<!--###################################################################-->
+<div th:fragment="welcome">
+    <div sec:authorize="isAnonymous()" class="mx-auto p-2">
+        <p class="display-3 text-center text-white">Welcome to our bike rental service!</p>
+        <br>
+        <p class="h-3 text-center text-white">Please log in and use the navigation according to your needs.</p>
+    </div>
+    <div sec:authorize="hasAuthority('ADMIN')" class="mx-auto p-2">
+        <p class="display-3 text-center text-white">Hello admin!</p>
+    </div>
+    <div sec:authorize="hasAuthority('MANAGER')" class="mx-auto p-2">
+        <p class="display-3 text-center text-white">Hello manager!</p>
+    </div>
+    <div sec:authorize="hasAuthority('ROLE_USER')" class="mx-auto p-2">
+        <p class="display-3 text-center text-white">Hello customer!</p>
+    </div>
+</div>
 <!--###################################################################-->
 
 <!--TODO: manage bike, etc pages implementation-->

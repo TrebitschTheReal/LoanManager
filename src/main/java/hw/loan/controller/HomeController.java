@@ -18,14 +18,14 @@ public class HomeController {
     @GetMapping("login")
     public String login(){return mainPage;}
 
-    @GetMapping("managebikes")
-    public String managebikes(){return mainPage;}
+    @GetMapping("managebike")
+    public String managebike(){return mainPage;}
 
     @GetMapping("manageusers")
     public String manageusers(){return mainPage;}
 
-    @GetMapping("rentbike")
-    public String rentbike(){return mainPage;}
+/*    @GetMapping("rentbike")
+    public String rentbike(){return mainPage;}*/
 
     @GetMapping("403")
     public String accesdenied(){return mainPage;}

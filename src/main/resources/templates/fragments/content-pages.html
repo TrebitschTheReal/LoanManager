@@ -80,12 +80,38 @@
     </div>
 </div>
 <!--###################################################################-->
-<div th:fragment="managebikes">
+<div th:fragment="managebike">
 
 </div>
 <!--###################################################################-->
-<div th:fragment="rentbike">
-
+<div class="p-3" th:fragment="rentbike">
+    <table class="table table-striped table-dark">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Brand</th>
+            <th scope="col">Color</th>
+            <th scope="col">Condition</th>
+            <th scope="col">Rentable</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="bike : ${bikeList}">
+            <th scope="row" th:text="${bike.getId()}"></th>
+            <th scope="row" th:text="${bike.getBrand()}"></th>
+            <th scope="row" th:text="${bike.getColor()}"></th>
+            <th scope="row" th:text="${bike.getCondition()}"></th>
+            <th scope="row" th:if="${bike.getRentable()} == 0">
+                <button disabled class="btn btn-dark" href="#" value="">:( Bike is not available</button>
+            </th>
+            <th scope="row" th:unless="${bike.getRentable()} == 0">
+                <form action="">
+                    <input type="submit" class="btn btn-success" th:value="Rent">
+                </form>
+            </th>
+        </tr>
+        </tbody>
+    </table>
 </div>
 <!--###################################################################-->
 <div th:fragment="manageusers">

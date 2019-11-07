@@ -1,8 +1,7 @@
 package hw.loan.controller;
 
 import hw.loan.model.Bike;
-import hw.loan.service.ListBikeService;
-import hw.loan.service.NewBikeService;
+import hw.loan.service.BikeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,12 +15,13 @@ import java.util.List;
 public class ListBikeController {
 
     @Autowired
-    private ListBikeService listBikeService;
+    private BikeService bikeService;
 
     @RequestMapping(value={"rentbike", "managebike"}, method = RequestMethod.GET)
     public String listAllBike(@RequestParam (required = false)String bikeParam, Model model) {
-        List<Bike> bikeList = listBikeService.listBike();
+        List<Bike> bikeList = bikeService.listBike();
         System.out.println(bikeParam);
+
 
 
 

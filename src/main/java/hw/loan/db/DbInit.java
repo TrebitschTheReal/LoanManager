@@ -38,13 +38,15 @@ public class DbInit implements CommandLineRunner {
         Bike a = new Bike("Trek", "red", "brand-new", 1,0);
         Bike b = new Bike("BMC", "blue", "wrecked", 0,1);
         Bike c = new Bike("Giant", "green", "brand-new", 1,0);
-        Bike d = new Bike("Csepel", "white", "spared", 1,0);
+        Bike d = new Bike("Csepel", "white", "spared", 0,0);
         Bike e = new Bike("Focus", "black", "good-condition", 1,0);
         Bike f = new Bike("Diamondback", "yellow", "good-condition", 1,0);
-        Bike g = new Bike("Kona", "blue", "wrecked", 0,1);
+        Bike g = new Bike("Kona", "blue", "spared", 1,0);
+        Bike h = new Bike("Merida", "gray", "wrecked", 0,1);
+        Bike i = new Bike("Dahon", "camo", "good-condition", 0,0);
 
         List<User> users = Arrays.asList(user,admin,manager);
-        List<Bike> bikes = Arrays.asList(a,b,c,d,e,f,g);
+        List<Bike> bikes = Arrays.asList(a,b,c,d,e,f,g,h,i);
 
         // Save to db
         this.userRepository.saveAll(users);

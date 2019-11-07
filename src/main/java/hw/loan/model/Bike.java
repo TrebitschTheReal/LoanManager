@@ -55,4 +55,8 @@ public class Bike {
     public int getRentable() {
         return rentable;
     }
+
+    public int getUnderRepair() {
+        return underRepair;
+    }
 }

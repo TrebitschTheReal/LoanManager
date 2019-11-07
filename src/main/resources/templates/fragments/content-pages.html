@@ -98,21 +98,23 @@
         <tbody>
         <!--/*@thymesVar id="bikeList" type="hw.loan.model.Bike"*/-->
         <!--/*@thymesVar id="bike" type="hw.loan.model.Bike"*/-->
-        <tr th:each="bike : ${bikeList}">
-            <th scope="row" th:text="${bike.getId()}"></th>
-            <th scope="row" th:text="${bike.getBrand()}"></th>
-            <th scope="row" th:text="${bike.getColor()}"></th>
-            <th scope="row" th:text="${bike.getCondition()}"></th>
-            <th scope="row" th:if="${bike.getRentable()} == 0 and ${bike.getUnderRepair()} == 0">
-                <button disabled class="btn btn-dark" value="">:( Bike is already rented</button>
-            </th>
-            <th scope="row" th:if="${bike.getRentable()} == 0 and ${bike.getUnderRepair()} == 1">
-                <button disabled class="btn btn-dark" value="">Bike is under repair</button>
-            </th>
-            <th scope="row" th:if="${bike.getRentable()} == 1">
-                <a class="btn btn-success" th:href="@{/rentbike(bikeParam=${bike.getId()})}">Rent</a>
-            </th>
-        </tr>
+        <form th:each="bike : ${bikeList}" action="">
+            <tr>
+                <th scope="row" th:text="${bike.getId()}"></th>
+                <th scope="row" th:text="${bike.getBrand()}"></th>
+                <th scope="row" th:text="${bike.getColor()}"></th>
+                <th scope="row" th:text="${bike.getCondition()}"></th>
+                <th scope="row" th:if="${bike.getRentable()} == 0 and ${bike.getUnderRepair()} == 0">
+                    <button disabled class="btn btn-dark" value="">:( Bike is already rented</button>
+                </th>
+                <th scope="row" th:if="${bike.getRentable()} == 0 and ${bike.getUnderRepair()} == 1">
+                    <button disabled class="btn btn-dark" value="">Bike is under repair</button>
+                </th>
+                <th scope="row" th:if="${bike.getRentable()} == 1">
+                    <input hidden value="modifiableBikeId" name="modifiableBikeId" id="modifiableBikeId">
+                    <input type="submit" class="btn btn-success" value="Rent"/>
+                </th>
+            </tr>
         </form>
         </tbody>
     </table>

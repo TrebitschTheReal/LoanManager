@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BikeRepository extends JpaRepository<Bike, Long> {
-    Bike findByBrand(String brand);
+    Bike findById(long id);
 }

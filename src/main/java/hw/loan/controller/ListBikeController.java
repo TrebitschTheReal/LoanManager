@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -18,8 +19,12 @@ public class ListBikeController {
     private ListBikeService listBikeService;
 
     @RequestMapping(value={"rentbike", "managebike"}, method = RequestMethod.GET)
-    public String listAllBike(Model model) {
+    public String listAllBike(@RequestParam (required = false)String bikeParam, Model model) {
         List<Bike> bikeList = listBikeService.listBike();
+        System.out.println(bikeParam);
+
+
+
         model.addAttribute("bikeList", bikeList);
         return "index";
     }

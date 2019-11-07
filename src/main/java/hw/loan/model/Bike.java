@@ -23,11 +23,15 @@ public class Bike {
     @Column(name = "valueRentable", nullable = false)
     private int rentable;
 
-    public Bike(String brand, String color, String condition, int rentable){
+    @Column(name = "valueUnderRepair", nullable = false)
+    private int underRepair;
+
+    public Bike(String brand, String color, String condition, int rentable, int underRepair){
         this.brand = brand;
         this.color = color;
         this.condition = condition;
         this.rentable = rentable;
+        this.underRepair = underRepair;
     }
 
     protected Bike(){}

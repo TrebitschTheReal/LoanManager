@@ -96,20 +96,21 @@
         </tr>
         </thead>
         <tbody>
+        <!--/*@thymesVar id="bikeList" type="hw.loan.model.Bike"*/-->
+        <!--/*@thymesVar id="bike" type="hw.loan.model.Bike"*/-->
         <tr th:each="bike : ${bikeList}">
             <th scope="row" th:text="${bike.getId()}"></th>
             <th scope="row" th:text="${bike.getBrand()}"></th>
             <th scope="row" th:text="${bike.getColor()}"></th>
             <th scope="row" th:text="${bike.getCondition()}"></th>
             <th scope="row" th:if="${bike.getRentable()} == 0">
-                <button disabled class="btn btn-dark" href="#" value="">:( Bike is not available</button>
+                <button disabled class="btn btn-dark" value="">:( Bike is not available</button>
             </th>
             <th scope="row" th:unless="${bike.getRentable()} == 0">
-                <form action="">
-                    <input type="submit" class="btn btn-success" th:value="Rent">
-                </form>
+                <a class="btn btn-success" th:href="@{/rentbike(bike=${bike.getId()})}">Rent</a>
             </th>
         </tr>
+        </form>
         </tbody>
     </table>
 </div>
@@ -119,7 +120,7 @@
 </div>
 <!--###################################################################-->
 <div th:fragment="accesdenied">
-<p>Sry, you dont have acces to use this module.</p>
+    <p>Sry, you dont have acces to use this module.</p>
 </div>
 
 <!--###################################################################-->

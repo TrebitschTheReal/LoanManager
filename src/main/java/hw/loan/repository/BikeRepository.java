@@ -8,8 +8,6 @@ import java.util.List;
 
 @Repository
 public interface BikeRepository extends JpaRepository<Bike, Long> {
-    List<Bike> deleteById(long id);
-    List<Bike> findByUnderRepair(long id);
-    List<Bike> findByRentable(long id);
-
+    //List<Bike> deleteById(long id);
+    //List<Bike> findByBrandAndColor(String brand, String color);
 }

@@ -24,34 +24,39 @@ public class BikeController {
     }
 
     @PostMapping(value ="/rentbike")
-    public String rentBike(@ModelAttribute("id") Bike bike, Model model) {
+    public String rentBike(@ModelAttribute("id") Bike bike) {
         bike.setRentable(false);
         bikeService.updateBike(bike);
 
-        List<Bike> bikeList = bikeService.listBike();
-        model.addAttribute("bikeList", bikeList);
-        return "index";
+        return "redirect:/rentbike";
     }
 
     @PostMapping(value ="/repairbike")
-    public String repairBike(@ModelAttribute("id") Bike bike, Model model) {
+    public String repairBike(@ModelAttribute("id") Bike bike) {
         bike.setUnderRepair(!bike.getUnderRepair());
         bikeService.updateBike(bike);
-
-        List<Bike> bikeList = bikeService.listBike();
-        model.addAttribute("bikeList", bikeList);
         return "redirect:/rentbike";
     }
 
     @PostMapping(value ="/deletebike")
-    public String deleteBike(@RequestParam("id") long modifiableBikeId, Model model) {
-        System.out.println(modifiableBikeId);
-        bikeService.deleteBike(modifiableBikeId);
-
-
-        List<Bike> bikeList = bikeService.listBike();
-        model.addAttribute("bikeList", bikeList);
-        return "index";
+    public String deleteBike(@ModelAttribute("id") Bike bike) {
+        bikeService.deleteBike(bike.getId());
+        return "redirect:/rentbike";
     }
 
+    @PostMapping(value ="/resetbikestatus")
+    public String resetBikeStatus(@ModelAttribute("id") Bike bike) {
+        bike.setRentable(true);
+        bike.setUnderRepair(false);
+        bikeService.updateBike(bike);
+        return "redirect:/rentbike";
+    }
+
+    @PostMapping(value ="/setcondition")
+    public String setBikeCondition(@ModelAttribute Bike bike) {
+        System.out.println(bike.getCondition());
+        System.out.println(bike.getId());
+
+        return "redirect:/rentbike";
+    }
 }

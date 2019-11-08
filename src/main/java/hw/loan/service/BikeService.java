@@ -13,7 +13,11 @@ public class BikeService {
     @Autowired
     private BikeRepository bikeRepository;
 
-    public List<Bike> listBike(){
+    public List<Bike> listBike() {
         return bikeRepository.findAll();
+    }
+
+    public void deleteBike(long id) {
+        bikeRepository.deleteById(id);
     }
 }

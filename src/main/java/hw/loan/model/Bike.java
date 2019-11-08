@@ -78,6 +78,12 @@ public class Bike {
     }
 
     public void setUnderRepair(boolean underRepair) {
+        if(underRepair){
+            this.rentable = false;
+        }
+        else {
+            this.rentable = true;
+        }
         this.underRepair = underRepair;
     }
 }

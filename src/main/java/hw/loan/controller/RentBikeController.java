@@ -18,8 +18,8 @@ public class RentBikeController {
 
     @PostMapping(value ="/rentbike")
     public String modifyBike(@ModelAttribute("id") Bike bike, Model model) {
-        System.out.println(bike.getId());
-
+        bike.setRentable(false);
+        bikeService.updateBike(bike);
 
         List<Bike> bikeList = bikeService.listBike();
         model.addAttribute("bikeList", bikeList);

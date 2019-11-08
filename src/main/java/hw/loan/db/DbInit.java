@@ -35,15 +35,15 @@ public class DbInit implements CommandLineRunner {
         User manager = new User("manager",passwordEncoder.encode("manager123"),"MANAGER","MANAGER");
 
         // Crete test bikes
-        Bike a = new Bike("Trek", "red", "brand-new", 1,0);
-        Bike b = new Bike("BMC", "blue", "wrecked", 0,1);
-        Bike c = new Bike("Giant", "green", "brand-new", 1,0);
-        Bike d = new Bike("Csepel", "white", "spared", 0,0);
-        Bike e = new Bike("Focus", "black", "good-condition", 1,0);
-        Bike f = new Bike("Diamondback", "yellow", "good-condition", 1,0);
-        Bike g = new Bike("Kona", "blue", "spared", 1,0);
-        Bike h = new Bike("Merida", "gray", "wrecked", 0,1);
-        Bike i = new Bike("Dahon", "camo", "good-condition", 0,0);
+        Bike a = new Bike("Trek", "red", "brand-new", true,false);
+        Bike b = new Bike("BMC", "blue", "wrecked", false,true);
+        Bike c = new Bike("Giant", "green", "brand-new", true,false);
+        Bike d = new Bike("Csepel", "white", "spared", false,false);
+        Bike e = new Bike("Focus", "black", "good-condition", true,false);
+        Bike f = new Bike("Diamondback", "yellow", "good-condition", true,false);
+        Bike g = new Bike("Kona", "blue", "spared", true,false);
+        Bike h = new Bike("Merida", "gray", "wrecked", false,true);
+        Bike i = new Bike("Dahon", "camo", "good-condition", false,false);
 
         List<User> users = Arrays.asList(user,admin,manager);
         List<Bike> bikes = Arrays.asList(a,b,c,d,e,f,g,h,i);

@@ -95,22 +95,23 @@
             <th scope="col">Rentable</th>
         </tr>
         </thead>
+
         <tbody>
-        <!--/*@thymesVar id="bikeList" type="hw.loan.model.Bike"*/-->
+        <!--/*@thymesVar id="bikeList" type="hw.loan.model.Bike[]"*/-->
         <!--/*@thymesVar id="bike" type="hw.loan.model.Bike"*/-->
         <tr th:each="bike : ${bikeList}">
             <form action="#" th:action="@{/rentbike}" th:object="${bike}" method="post">
-                <th scope="row" th:text="${bike.getId()}"></th>
+                <td scope="row" th:text="${bike.getId()}"></td>
                 <th scope="row" th:text="${bike.getBrand()}"></th>
                 <th scope="row" th:text="${bike.getColor()}"></th>
                 <th scope="row" th:text="${bike.getCondition()}"></th>
-                <th scope="row" th:if="${bike.getRentable()} == 0 and ${bike.getUnderRepair()} == 0">
+                <th scope="row" th:if="${!bike.getRentable()} and ${!bike.getUnderRepair()}">
                     <button disabled class="btn btn-dark" value="">:( Bike is already rented</button>
                 </th>
-                <th scope="row" th:if="${bike.getRentable()} == 0 and ${bike.getUnderRepair()} == 1">
+                <th scope="row" th:if="${!bike.getRentable()} and ${bike.getUnderRepair()}">
                     <button disabled class="btn btn-dark" value="">Bike is under repair</button>
                 </th>
-                <th scope="row" th:if="${bike.getRentable()} == 1">
+                <th scope="row" th:if="${bike.getRentable()}">
                     <input type="hidden" name="id" th:value="${bike.getId()}"/>
                     <input type="submit" class="btn btn-success" value="Rent"/>
                 </th>

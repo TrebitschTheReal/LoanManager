@@ -20,4 +20,8 @@ public class BikeService {
     public void deleteBike(long id) {
         bikeRepository.deleteById(id);
     }
+
+    public void updateBike(Bike bike) {
+        bikeRepository.save(bike);
+    }
 }

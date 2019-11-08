@@ -21,12 +21,13 @@ public class Bike {
     private String condition;
 
     @Column(name = "valueRentable", nullable = false)
-    private int rentable;
+    private boolean rentable;
 
+    //TODO: @COlUMN if stements
     @Column(name = "valueUnderRepair", nullable = false)
-    private int underRepair;
+    private boolean underRepair;
 
-    public Bike(String brand, String color, String condition, int rentable, int underRepair){
+    public Bike(String brand, String color, String condition, boolean rentable, boolean underRepair){
         this.brand = brand;
         this.color = color;
         this.condition = condition;
@@ -52,11 +53,31 @@ public class Bike {
         return condition;
     }
 
-    public int getRentable() {
+    public boolean getRentable() {
         return rentable;
     }
 
-    public int getUnderRepair() {
+    public boolean getUnderRepair() {
         return underRepair;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public void setCondition(String condition) {
+        this.condition = condition;
+    }
+
+    public void setRentable(boolean rentable) {
+        this.rentable = rentable;
+    }
+
+    public void setUnderRepair(boolean underRepair) {
+        this.underRepair = underRepair;
     }
 }

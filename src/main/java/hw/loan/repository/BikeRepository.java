@@ -11,4 +11,5 @@ public interface BikeRepository extends JpaRepository<Bike, Long> {
     List<Bike> deleteById(long id);
     List<Bike> findByUnderRepair(long id);
     List<Bike> findByRentable(long id);
+
 }

@@ -96,11 +96,10 @@
         </tr>
         </thead>
         <tbody>
-
         <form action="#" th:action="@{/rentbike}" method="post">
             <!--/*@thymesVar id="bikeList" type="hw.loan.model.Bike"*/-->
             <!--/*@thymesVar id="bike" type="hw.loan.model.Bike"*/-->
-            <tr th:each="bike : ${bikeList}" >
+            <tr th:each="bike : ${bikeList}">
                 <th scope="row" th:text="${bike.getId()}"></th>
                 <th scope="row" th:text="${bike.getBrand()}"></th>
                 <th scope="row" th:text="${bike.getColor()}"></th>

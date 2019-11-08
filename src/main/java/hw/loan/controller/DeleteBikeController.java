@@ -11,14 +11,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-public class RentBikeController {
+public class DeleteBikeController {
 
     @Autowired
     private BikeService bikeService;
 
-    @PostMapping(value ="/rentbike")
+    @PostMapping(value ="/deletebike")
     public String modifyBike(@RequestParam("id") long modifiableBikeId, Model model) {
         System.out.println(modifiableBikeId);
+        bikeService.deleteBike(modifiableBikeId);
 
 
         List<Bike> bikeList = bikeService.listBike();

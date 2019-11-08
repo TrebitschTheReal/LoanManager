@@ -17,8 +17,8 @@ public class RentBikeController {
     private BikeService bikeService;
 
     @PostMapping(value ="/rentbike")
-    public String modifyBike(@RequestParam("id") long modifiableBikeId, Model model) {
-        System.out.println(modifiableBikeId);
+    public String modifyBike(@ModelAttribute("id") Bike bike, Model model) {
+        System.out.println(bike.getId());
 
 
         List<Bike> bikeList = bikeService.listBike();
